@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
+    "html-react-parser": "^5.1.18",
     "i": "^0.3.7",
     "npm": "^10.9.0",
     "react": "^18.3.1",
