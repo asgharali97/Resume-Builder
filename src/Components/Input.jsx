@@ -9,7 +9,7 @@ const Input = forwardRef(function Input(
     <>
       <div className="flex flex-col">
         {label && (
-          <label className="inline-block mb-2 pl-1" htmlFor={id}>
+          <label className="inline-block mb-4 pl-1" htmlFor={id}>
             {label}
           </label>
         )}

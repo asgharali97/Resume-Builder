@@ -7,9 +7,9 @@ function App() {
   // console.log(basicInfo)
   return (
     <>
-    <div className="h-screen w-full text-white bg-[#121212]">
+    <div className="w-full text-white bg-[#121212]">
       <Header/>
-     <Outlet/>
+      <Outlet/>
     </div>
     </>
   )

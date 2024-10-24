@@ -3,11 +3,12 @@ import Input from "./Input";
 import { useDispatch,useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {setBasicInfo} from '../store/UserSlice'
-import {useForm} from 'react-hook-form';
+import {useForm, useFieldArray} from 'react-hook-form';
 import Button from "./button";
 const BasicInfo = () => {
   const dispatch = useDispatch();
-  const {register , handleSubmit,setValue , formState: { errors }} = useForm();
+  const {register , handleSubmit, setValue, control, formState: { errors }} = useForm();
+  const { fields, append, remove } = useFieldArray({ control, name: "link" });
   const navigate = useNavigate();
 
    useEffect(()=>{
@@ -30,17 +31,23 @@ const BasicInfo = () => {
  
   return (
     <>
-      <div className="w-full h-screen bg-[#121212] py-8 px-16">
+      <div className="w-full min-h-[100vh] bg-[#121212] py-8 px-16">
         <div className="head py-4 ">
           <h1 className="text-3xl font-semibold mb-4">Basic Info</h1>
         </div>
-        <div className="w-[70vw] h-[60vh]">
+        <div className="w-[64vw] h-[60vh]">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap gap-8 relative">
             <Input
               label="Name"
               placeholder="Enter your Full Name"
               className={`${errors.name ? 'mt-5' : ''}`}
-              {...register("name", { required: "Name is required" })}
+              {...register("name", { 
+                required: "Name is required",
+                minLength: { 
+                  value: 3, 
+                  message: "Name must be at least 3 characters long" 
+                } 
+              })}
             />
             {errors.name && <p className="text-red-600 absolute top-[4vh] px-1">{errors.name.message}</p>}
             <Input
@@ -88,8 +95,50 @@ const BasicInfo = () => {
               })}
             />
             {errors.github && <p className="text-red-600 absolute top-[40vh] px-1">{errors.github.message}</p>}
-            <Button type="submit" className="mt-7">
-              Add
+            {fields.map((field, index) => (
+              <div key={field.id} className="">
+                <Input
+                  label={`Social Links ${index + 1}`}
+                  placeholder="Enter Link"
+                  {...register(`link.${index}.number`)}
+                />
+                {errors.link?.[index]?.number && (
+                  <p className="text-red-600">{errors.link[index].number.message}</p>
+                )}
+                <Button type="button" className='mt-8 h-10 px-6 hover:-rotate-3 hover:bg-[#272727]' onClick={() => remove(index)}>Remove</Button>
+              </div>
+            ))}
+            <Button className="mt-12 h-7 px-2 hover:rotate-90 hover:bg-[#272727]" onClick={()=> append({number : ''})}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#ffffff" fill="none">
+             <path d="M12 4V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+             <path d="M4 12H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            </Button>
+            <Button type="submit" className="flex items-center justify-between px-4 w-28 mt-9 absolute bottom-0 right-0 hover:rotate-3 hover:bg-[#272727]">
+            Next
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="26"
+                height="26"
+                color="#ffffff"
+                fill="none"
+              >
+                <path
+                  d="M20.0001 11.9998L4.00012 11.9998"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15.0003 17C15.0003 17 20.0002 13.3176 20.0002 12C20.0002 10.6824 15.0002 7 15.0002 7"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </Button>
           </form>
         </div>
