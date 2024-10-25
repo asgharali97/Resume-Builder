@@ -81,7 +81,7 @@ const Summary = () => {
             <Link to="/basicInfo">
             <Button
               type="submit"
-              className="flex items-center justify-between px-4 w-28 mt-4 top-32 hover:rotate-[-3deg]"
+              className="flex items-center justify-between px-4 w-28 mt-4 top-32 hover:rotate-[-3deg] hover:bg-[#272727]"
             >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +111,7 @@ const Summary = () => {
             </Link>
             <Button
               type="submit"
-              className="flex items-center justify-between px-4 w-28 mt-4 absolute top-32 left-[54vw] hover:rotate-3"
+              className="flex items-center justify-between px-4 w-28 mt-4 absolute top-32 left-[54vw] hover:rotate-3 hover:bg-[#272727]"
             >
               Next
               <svg

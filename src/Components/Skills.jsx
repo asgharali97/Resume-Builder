@@ -14,10 +14,10 @@ const Skills = () => {
     const savedData = localStorage.getItem('skills');
     if(savedData){
       const parsedData = JSON.parse(savedData)
-      Object.keys(parsedData).forEach((ket)=> setValue(key, parsedData[key]))
+      Object.keys(parsedData).forEach((key)=> setValue(key, parsedData[key]))
       dispatch(setSkills(parsedData))
     }
-   })
+   },[dispatch,setValue])
 
    const onSubmit = (data)=>{
     if(Object.keys(errors).length === 0) {
@@ -101,7 +101,7 @@ const Skills = () => {
         <Link to="/summary">
             <Button
               type="submit"
-              className="flex items-center justify-between px-4 w-28 mt-4 top-32 hover:rotate-[-3deg]"
+              className="flex items-center justify-between px-4 w-28 mt-4 top-32 hover:rotate-[-3deg] hover:bg-[#272727]"
             >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +131,7 @@ const Skills = () => {
             </Link>
          <Button
               type="submit"
-              className="flex items-center justify-between px-4 w-28 mt-4 absolute top-56 left-[54vw] hover:rotate-3"
+              className="flex items-center justify-between px-4 w-28 mt-4 absolute top-56 left-[54vw] hover:rotate-3 hover:bg-[#272727]"
             >
               Next
               <svg
