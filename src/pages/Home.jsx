@@ -4,7 +4,7 @@ import BasicInfo from '../Components/BasicInfo'
 const Home = () => {
   return (
     <>
-      <div className="w-full min-h-screen">
+      <div className="">
     <BasicInfo/>
       </div>
     </>

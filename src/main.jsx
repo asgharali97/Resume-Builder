@@ -8,7 +8,11 @@ import { createBrowserRouter , RouterProvider } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import BasicInfo from './Components/BasicInfo.jsx';
 import Summary from './Components/Summary.jsx';
-
+import Skills from './Components/Skills.jsx';
+import Experience from './Components/Experience.jsx';
+import Achivements from './Components/Achivements.jsx';
+import Education from './Components/education.jsx';
+import Projects from './Components/Projects.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +30,26 @@ const router = createBrowserRouter([
       {
         path:'/summary',
         element:<Summary/>
+      },
+      {
+        path:'/skills',
+        element:<Skills/>
+      },
+      {
+        path:'/experience',
+        element:<Experience/>
+      },
+      {
+        path:'/projects',
+        element:<Projects/>
+      },
+      {
+        path:'/education',
+        element:<Education/>
+      },
+      {
+        path:'/achivements',
+        element:<Achivements/>
       },
     ]
   }

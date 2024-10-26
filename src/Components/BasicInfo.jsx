@@ -31,7 +31,7 @@ const BasicInfo = () => {
  
   return (
     <>
-      <div className="w-full min-h-[100vh] bg-[#121212] py-8 px-16">
+      <div className="min-h-screen w-full bg-[rgb(18,18,18)] py-8 px-16">
         <div className="head py-4 ">
           <h1 className="text-3xl font-semibold mb-4">Basic Info</h1>
         </div>
