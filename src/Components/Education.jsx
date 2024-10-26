@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Form } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setWorkExp } from "../store/UserSlice";
 import { useForm, useFieldArray } from "react-hook-form";
+import { setEducation } from "../store/UserSlice";
 import Input from "./Input";
 import Button from "./button";
-
-const Experience = () => {
+const education = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -17,39 +16,35 @@ const Experience = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      experiences: [
+      education: [
         {
-          role: "",
-          companyName: "",
+          title: "",
+          collegeName: "",
           duration: "",
           location: "",
-          responsibilities: "",
-          impact: "",
         },
       ],
     },
   });
-
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "experiences",
+    name: "education",
+  });
+  useEffect(() => {
+    const savedData = localStorage.getItem("education");
+    if (savedData) {
+      const parsedData = JSON.stringify(savedData);
+      Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
+      dispatch(setEducation(parsedData));
+    }
   });
 
-  useEffect(() => {
-    const savedData = localStorage.getItem("experience");
-    if (savedData) {
-      const parsedData = JSON.parse(savedData);
-      Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-      dispatch(setWorkExp(parsedData));
-    }
-  }, [dispatch, setValue]);
-
   const submit = (data) => {
-    if (Object.keys(errors).length === 0) {
-      dispatch(setWorkExp(data));
+    if (Object.key(errors).length === 0) {
+      dispatch(setEducation(data));
+      localStorage.setItem("projects", JSON.stringify(data));
       console.log(data);
-      localStorage.setItem("experience", JSON.stringify(data));
-      navigate("/projects");
+      navigate("/achivements");
     }
   };
 
@@ -57,113 +52,76 @@ const Experience = () => {
     <>
       <div className="w-full py-8 px-16">
         <div className="head py-4 ">
-          <h1 className="text-3xl font-semibold mb-4">Experience</h1>
+          <h1 className="text-3xl font-semibold mb-4">Project</h1>
         </div>
         <div className="w-[64vw] h-[60vh]">
-          <form
-            onSubmit={handleSubmit(submit)}
-            className="flex flex-wrap gap-8 relative"
+          <form 
+          onSubmit={handleSubmit(submit)} 
+          className="flex flex-wrap gap-8 relative"
           >
-            {fields.map((field, index) => (
+            {fields.map((field,index)=>{
               <div key={field.id} className="flex flex-wrap gap-8">
                 <Input
-                  label="Designation"
-                  placeholder="Enter Title e.g: Full Stack Developer"
-                  className={`${errors.role ? "mt-5" : ""}`}
-                  {...register(`experiences[${index}].role`, {
-                    minLength: {
-                      value: 3,
-                      message: "Must be at least 3 characters long",
-                    },
-                  })}
+                label='Title'
+                placeholder="e.g:Bachelors of technology in Computer Science"
+                className={`${ errors.title ? "mt-5" : "" }`}
+                {...register(`title.${index}.eduTitle`,{
+                  minLength:{
+                    value:3,
+                    message:'Title Must be at least 3 characters long'
+                  }
+                })}
                 />
-                {errors?.experiences?.[index]?.role && (
-                  <p className="text-red-600">
-                    {errors.experiences[index].role.message}
-                  </p>
-                )}
-
+                {errors.title?.[index]?.eduTitle && (
+                <p className="text-red-600">
+                  {errors.title[index].eduTitle.message}
+                </p>  
+              )}
                 <Input
-                  label="Company Name"
-                  placeholder="Enter Company Name e.g: amazon"
-                  className={`${errors.companyName ? "mt-5" : ""}`}
-                  {...register("companyName", {
-                    minLength: {
-                      value: 3,
-                      message: "must be at least 3 characters long",
-                    },
-                  })}
+                label='College/School Name'
+                placeholder="Enter Name of your College or School"
+                className={`${ errors.collegeName ? "mt-5" : "" }`}
+                {...register('collegeName',{
+                  minLength:{
+                    value:3,
+                    message:'Name Must be at least 2 characters long'
+                  }
+                })}
                 />
-                {errors.companyName && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.companyName.message}
-                  </p>
-                )}
+                {errors.collegeName && (
+                <p className="text-red-600">
+                  {errors.collegeName.message}
+                </p>  
+              )}
                 <Input
-                  label="Duration"
-                  placeholder="2018-2021"
-                  className={`${errors.duration ? "mt-5" : ""}`}
-                  {...register("duration", {
-                    minLength: {
-                      value: 3,
-                      message: "must be at least 3 characters long",
-                    },
-                  })}
+                label='Duration'
+                placeholder="Mar 2020 - May 2024"
+                className={`${ errors.duration ? "mt-5" : "" }`}
+                {...register('duration')}
                 />
                 {errors.duration && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.duration.message}
-                  </p>
-                )}
+                <p className="text-red-600">
+                  {errors.duration.message}
+                </p>  
+              )}
                 <Input
-                  label="Location"
-                  placeholder="Enter a Location e.g: remote"
-                  className={`${errors.location ? "mt-5" : ""}`}
-                  {...register("location", {
-                    minLength: {
-                      value: 3,
-                      message: "must be at least 3 characters long",
-                    },
-                  })}
+                label='Location'
+                placeholder="Location e.g:"
+                className={`${ errors.location ? "mt-5" : "" }`}
+                {...register('location',{
+                  minLength:{
+                    value:3,
+                    message:'Location Must be at least 2 characters long'
+                  }
+                })}
                 />
+
                 {errors.location && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.location.message}
-                  </p>
-                )}
-                <Input
-                  label="Enter a Work description"
-                  placeholder="What your responsibilities were"
-                  className={`${errors.responsibilities ? "mt-5" : ""}`}
-                  {...register("responsibilities", {
-                    minLength: {
-                      value: 3,
-                      message: "must be at least 3 characters long",
-                    },
-                  })}
-                />
-                {errors.responsibilities && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.responsibilities.message}
-                  </p>
-                )}
-                <Input
-                  label="Impact"
-                  placeholder="Improvement or Impact you made in company"
-                  className={`${errors.impact ? "mt-5" : ""}`}
-                  {...register("impact", {
-                    minLength: {
-                      value: 3,
-                      message: "must be at least 3 characters long",
-                    },
-                  })}
-                />
-                {errors.impact && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.impact.message}
-                  </p>
-                )}
-                <div className="w-full flex justify-center items-center">
+                <p className="text-red-600">
+                  {errors.location.message}
+                </p>  
+              )}
+              <div className="w-full flex justify-center items-center">
                   {fields.length > 1 && (
                     <Button
                       type="button"
@@ -208,8 +166,8 @@ const Experience = () => {
                   )}
                 </div>
               </div>
-            ))}
-            <Link to="/skills">
+            })}
+            <Link to="/projects">
               <Button
                 type="submit"
                 className="flex items-center justify-between px-4 w-28 mt-4 top-32 hover:rotate-[-3deg] hover:bg-[#272727]"
@@ -273,12 +231,10 @@ const Experience = () => {
             className='flex justify-center items-center absolute bottom-0 left-96 mt-12 h-7 px-2 hover:rotate-9 hover:bg-[#272727]'
               onClick={() =>
                 append({
-                  role: "",
-                  companyName: "",
+                  title: "",
+                  collegeName: "",
                   duration: "",
                   location: "",
-                  responsibilities: "",
-                  impact: "",
                 })
               }
             >
@@ -313,4 +269,4 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default education;
