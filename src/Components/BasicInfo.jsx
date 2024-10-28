@@ -5,26 +5,33 @@ import {useNavigate} from 'react-router-dom';
 import {setBasicInfo} from '../store/UserSlice'
 import {useForm, useFieldArray} from 'react-hook-form';
 import Button from "./button";
-const BasicInfo = () => {
+const BasicInfo = ({data}) => {
   const dispatch = useDispatch();
-  const {register , handleSubmit, setValue, control, formState: { errors }} = useForm();
+  const {register , handleSubmit, setValue, control, formState: { errors }} = useForm({
+    defaultValues:{
+      name: data?.name || '',
+      email: data?.email || '',
+      phone: data?.phone || '',
+      linkedIn: data?.linkedIn || '',
+      github: data?.github || '',
+      link: data?.link || '',
+    }
+  });
   const { fields, append, remove } = useFieldArray({ control, name: "link" });
   const navigate = useNavigate();
-
-   useEffect(()=>{
-    const savedData = localStorage.getItem('basicInfo');
-    if(savedData){
-      const parsedData = JSON.parse(savedData);
-      Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-      dispatch(setBasicInfo(parsedData))
-    }
-   },[dispatch,setValue])
+  // useEffect(()=>{
+  //   const savedData = localStorage.getItem('basicInfo');
+  //   if(savedData){
+  //     const parsedData = JSON.parse(savedData);
+  //     dispatch(setBasicInfo(parsedData))
+  //     Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
+  //   }
+  // },[dispatch,setValue])
 
    const onSubmit = (data)=>{
       if(Object.keys(errors).length === 0){
         dispatch(setBasicInfo(data))
         console.log(data)
-        localStorage.setItem('basicInfo', JSON.stringify(data)); 
         navigate('/summary'); 
    }
    }

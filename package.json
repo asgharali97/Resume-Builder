@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.0.0",
     "@reduxjs/toolkit": "^2.3.0",
     "html-react-parser": "^5.1.18",
     "i": "^0.3.7",

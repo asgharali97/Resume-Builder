@@ -11,9 +11,9 @@ import Summary from './Components/Summary.jsx';
 import Skills from './Components/Skills.jsx';
 import Experience from './Components/Experience.jsx';
 import Achivements from './Components/Achivements.jsx';
-import Education from './Components/education.jsx';
+import Education from './Components/Education.jsx';
 import Projects from './Components/Projects.jsx';
-
+import ResumeGernator from './pages/ResumeGernator.jsx';
 const router = createBrowserRouter([
   {
     path:'/',
@@ -50,6 +50,10 @@ const router = createBrowserRouter([
       {
         path:'/achivements',
         element:<Achivements/>
+      },
+      {
+        path:'/resumeGernator',
+        element:<ResumeGernator/>
       },
     ]
   }

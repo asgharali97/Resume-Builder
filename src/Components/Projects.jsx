@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import { useNavigate, Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+import { setProjects, removeProjects } from "../store/UserSlice";
 import { useForm, useFieldArray } from "react-hook-form";
-import { setEducation, removeEducation } from "../store/UserSlice";
 import Input from "./Input";
 import Button from "./button";
-const education = () => {
-  const navigate = useNavigate();
+
+const Projects = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -16,121 +17,147 @@ const education = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      education: [
+      projects: [
         {
-          degree: "",
-          collegeName: "",
-          durationTime: "",
-          location: "",
+          projectName: "",
+          tech: "",
+          deployedLink: "",
+          githubLink: "",
+          description: "",
         },
       ],
     },
   });
+
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "education",
+    name: "projects",
   });
+
   // useEffect(() => {
-  //   const savedData = localStorage.getItem("education");
+  //   const savedData = localStorage.getItem("projects");
   //   if (savedData) {
-  //     const parsedData = JSON.stringify(savedData);
+  //     const parsedData = JSON.parse(savedData);
   //     Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-  //     dispatch(setEducation(parsedData));
+  //     dispatch(setProjects(parsedData));
   //   }
-  // });
+  // }, [setValue, dispatch]);
 
   const submit = (data) => {
     if (Object.keys(errors).length === 0) {
-      dispatch(setEducation(data));
+      dispatch(setProjects(data));
+      console.log(data)
       // localStorage.setItem("projects", JSON.stringify(data));
-      console.log(data);
-      navigate("/achivements");
+      navigate("/education");
     }
   };
   
-  const removeEdu = (index)=>{
+  const removePro = (index)=>{
     remove(index)
-    dispatch(removeEducation(index))
+    dispatch(removeProjects(index))
   }
 
   return (
-    <>
-      <div className="w-full py-8 px-16">
-        <div className="head py-4 ">
-          <h1 className="text-3xl font-semibold mb-4">Education</h1>
-        </div>
-        <div className="w-[64vw] h-[60vh]">
-          <form 
-          onSubmit={handleSubmit(submit)} 
+    <div className="w-full py-8 px-16">
+      <div className="head py-4 ">
+        <h1 className="text-3xl font-semibold mb-4">Project</h1>
+      </div>
+      <div className="w-[64vw] h-[60vh]">
+        <form
+          onSubmit={handleSubmit(submit)}
           className="flex flex-wrap gap-8 relative"
-          >
-            {fields.map((field, index) => (
+        >
+          {fields.map((field, index) => (
             <div key={field.id} className="flex flex-wrap gap-8">
-                <Input
-                label='Title'
-                placeholder="e.g:Bachelors of technology in Computer Science"
-                className={`${ errors.title ? "mt-5" : "" }`}
-                {...register(`title.${index}.eduTitle`,{
-                  minLength:{
-                    value:3,
-                    message:'Title Must be at least 3 characters long'
-                  }
+              <Input
+                label="Project Name"
+                placeholder="e.g: E-Commerce Website"
+                className={`${errors.projectName ? "mt-5" : ""}`}
+                {...register(`projects.${index}.projectName`, {
+                  minLength: {
+                    value: 3,
+                    message: "Project Name Must be at least 3 characters long",
+                  },
                 })}
-                />
-                {errors.title?.[index]?.eduTitle && (
+              />
+              {errors?.projects?.[index]?.projectName && (
                 <p className="text-red-600">
-                  {errors.title[index].eduTitle.message}
-                </p>  
+                  {errors.projects[index].projectName.message}
+                </p>
               )}
-                <Input
-                label='College/School Name'
-                placeholder="Enter Name of your College or School"
-                className={`${ errors.collegeName ? "mt-5" : "" }`}
-                {...register('collegeName',{
-                  minLength:{
-                    value:3,
-                    message:'Name Must be at least 2 characters long'
-                  }
-                })}
-                />
-                {errors.collegeName && (
-                <p className="text-red-600">
-                  {errors.collegeName.message}
-                </p>  
-              )}
-                <Input
-                label='Duration'
-                placeholder="Mar 2020 - May 2024"
-                className={`${ errors.duration ? "mt-5" : "" }`}
-                {...register('duration')}
-                />
-                {errors.duration && (
-                <p className="text-red-600">
-                  {errors.duration.message}
-                </p>  
-              )}
-                <Input
-                label='Location'
-                placeholder="Location e.g:"
-                className={`${ errors.location ? "mt-5" : "" }`}
-                {...register('location',{
-                  minLength:{
-                    value:3,
-                    message:'Location Must be at least 2 characters long'
-                  }
-                })}
-                />
 
-                {errors.location && (
-                <p className="text-red-600">
-                  {errors.location.message}
-                </p>  
+              <Input
+                label="Teach Stack"
+                placeholder="e.g: React, Node,"
+                className={`${errors.tech ? "mt-5" : ""}`}
+                {...register("tech", {
+                  minLength: {
+                    value: 3,
+                    message: "Teach Stack Name must be at least 3 characters long",
+                  },
+                })}
+              />
+              {errors.tech && (
+                <p className="text-red-600 absolute top-[4vh] px-1">
+                  {errors.tech.message}
+                </p>
+              )}
+
+              <Input
+                label="Deployed Link"
+                placeholder="Enter a your project Deployed Link"
+                className={`${errors.deployedLink ? "mt-5" : ""}`}
+                {...register("deployedLink", {
+                  pattern: {
+                    value: /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^\s]*$/i,
+                    message: "Deployed URL must be valid"
+                  }
+                })}
+              />
+              {errors.deployedLink && (
+                <p className="text-red-600 absolute top-[4vh] px-1">
+                  {errors.deployedLink.message}
+                </p>
+              )}
+
+              <Input
+                label="GitHub Link"
+                placeholder="Enter a GitHub Link"
+                className={`${errors.githubLink ? "mt-5" : ""}`}
+                {...register("githubLink", {
+                  pattern: {
+                    value: /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^\s]*$/i,
+                    message: "GitHub URL must be valid"
+                  }
+                })}
+              />
+              {errors.githubLink && (
+                <p className="text-red-600 absolute top-[4vh] px-1">
+                  {errors.githubLink.message}
+                </p>
+              )}
+
+              <Input
+                label="Enter a your project description"
+                placeholder="Enter one or two line description"
+                className={`${errors.description ? "mt-5" : ""}`}
+                {...register("description", {
+                  minLength:{
+                    value:3,
+                    message:'Description must be at least 3 character long'
+                  }
+                })}
+              />
+              {errors.description && (
+                <p className="text-red-600 absolute top-[4vh] px-1">
+                  {errors.description.message}
+                </p>
               )}
               <div className="w-full flex justify-center items-center">
                   {fields.length > 1 && (
                     <Button
                       type="button"
-                      onClick={() => removeEdu(index)}
+                      onClick={() => removePro(index)}
                       className="mt-4 flex items-center justify-between px-4 w-36 hover:rotate-3 hover:bg-[#272727]"
                     >
                       Remove
@@ -169,10 +196,10 @@ const education = () => {
                       </svg>
                     </Button>
                   )}
-            </div>
+                </div>
             </div>
           ))}
-            <Link to="/projects">
+           <Link to="/experience">
               <Button
                 type="submit"
                 className="flex items-center justify-between px-4 w-28 mt-4 top-32 hover:rotate-[-3deg] hover:bg-[#272727]"
@@ -236,10 +263,11 @@ const education = () => {
             className='flex justify-center items-center absolute bottom-0 left-96 mt-12 h-7 px-2 hover:rotate-9 hover:bg-[#272727]'
               onClick={() =>
                 append({
-                  degree: "",
-                  collegeName: "",
-                  durationTime: "",
-                  location: "",
+                  projectName: "",
+                  tech: "",
+                  deployedLink: "",
+                  githubLink: "",
+                  description: "",
                 })
               }
             >
@@ -267,11 +295,10 @@ const education = () => {
                 />
               </svg>
             </Button>
-          </form>
-        </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 
-export default education;
+export default Projects;

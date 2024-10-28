@@ -10,20 +10,20 @@ const Skills = () => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
    
-   useEffect(()=>{
-    const savedData = localStorage.getItem('skills');
-    if(savedData){
-      const parsedData = JSON.parse(savedData)
-      Object.keys(parsedData).forEach((key)=> setValue(key, parsedData[key]))
-      dispatch(setSkills(parsedData))
-    }
-   },[dispatch,setValue])
+  //  useEffect(()=>{
+  //   const savedData = localStorage.getItem('skills');
+  //   if(savedData){
+  //     const parsedData = JSON.parse(savedData)
+  //     Object.keys(parsedData).forEach((key)=> setValue(key, parsedData[key]))
+  //     dispatch(setSkills(parsedData))
+  //   }
+  //  },[dispatch,setValue])
 
    const onSubmit = (data)=>{
     if(Object.keys(errors).length === 0) {
         dispatch(setSkills(data));
         console.log(data);
-        localStorage.setItem('skills',JSON.stringify(data));
+        // localStorage.setItem('skills',JSON.stringify(data));
         navigate('/experience')
     }
   

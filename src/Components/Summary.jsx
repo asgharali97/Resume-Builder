@@ -16,20 +16,20 @@ const Summary = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const savedData = localStorage.getItem("summary");
-    if (savedData) {
-      const parsedData = JSON.parse(savedData);
-      Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-      dispatch(setSummary(parsedData));
-    }
-  }, [dispatch, setValue]);
+  // useEffect(() => {
+  //   const savedData = localStorage.getItem("summary");
+  //   if (savedData) {
+  //     const parsedData = JSON.parse(savedData);
+  //     Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
+  //     dispatch(setSummary(parsedData));
+  //   }
+  // }, [dispatch, setValue]);
 
   const onSubmit = (data) => {
     if (Object.keys(errors).length === 0) {
       dispatch(setSummary(data));
       console.log(data);
-      localStorage.setItem("summary", JSON.stringify(data));
+      // localStorage.setItem("summary", JSON.stringify(data));
       navigate("/skills");
     }
   };

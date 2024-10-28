@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setWorkExp } from "../store/UserSlice";
+import { setWorkExp, removeWorkExp } from "../store/UserSlice";
 import { useForm, useFieldArray } from "react-hook-form";
 import Input from "./Input";
 import Button from "./button";
@@ -35,23 +35,27 @@ const Experience = () => {
     name: "experiences",
   });
 
-  useEffect(() => {
-    const savedData = localStorage.getItem("experience");
-    if (savedData) {
-      const parsedData = JSON.parse(savedData);
-      Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-      dispatch(setWorkExp(parsedData));
-    }
-  }, [dispatch, setValue]);
+  // useEffect(() => {
+  //   const savedData = localStorage.getItem("experience");
+  //   if (savedData) {
+  //     const parsedData = JSON.parse(savedData);
+  //     Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
+  //     dispatch(setWorkExp(parsedData));
+  //   }
+  // }, [dispatch, setValue]);
 
   const submit = (data) => {
     if (Object.keys(errors).length === 0) {
       dispatch(setWorkExp(data));
       console.log(data);
-      localStorage.setItem("experience", JSON.stringify(data));
+      // localStorage.setItem("experience", JSON.stringify(data));
       navigate("/projects");
     }
   };
+  const removeExp = (index)=>{
+    remove(index)
+    dispatch(removeWorkExp(index))
+  }
 
   return (
     <>
@@ -70,16 +74,16 @@ const Experience = () => {
                   label="Designation"
                   placeholder="Enter Title e.g: Full Stack Developer"
                   className={`${errors.role ? "mt-5" : ""}`}
-                  {...register(`experiences[${index}].role`, {
+                  {...register(`role`, {
                     minLength: {
                       value: 3,
                       message: "Must be at least 3 characters long",
                     },
                   })}
                 />
-                {errors?.experiences?.[index]?.role && (
+                {errors.role && (
                   <p className="text-red-600">
-                    {errors.experiences[index].role.message}
+                    {errors.role.message}
                   </p>
                 )}
 
@@ -167,7 +171,7 @@ const Experience = () => {
                   {fields.length > 1 && (
                     <Button
                       type="button"
-                      onClick={() => remove(index)}
+                      onClick={()=> removeExp(index)}
                       className="mt-4 flex items-center justify-between px-4 w-36 hover:rotate-3 hover:bg-[#272727]"
                     >
                       Remove
