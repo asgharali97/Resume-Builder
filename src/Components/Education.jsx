@@ -69,17 +69,17 @@ const education = () => {
                 <Input
                 label='Title'
                 placeholder="e.g:Bachelors of technology in Computer Science"
-                className={`${ errors.title ? "mt-5" : "" }`}
-                {...register(`title.${index}.eduTitle`,{
+                className={`${ errors.degree ? "mt-5" : "" }`}
+                {...register(`degree`,{
                   minLength:{
                     value:3,
                     message:'Title Must be at least 3 characters long'
                   }
                 })}
                 />
-                {errors.title?.[index]?.eduTitle && (
+                {errors.degree && (
                 <p className="text-red-600">
-                  {errors.title[index].eduTitle.message}
+                  {errors.degree.message}
                 </p>  
               )}
                 <Input
@@ -101,12 +101,12 @@ const education = () => {
                 <Input
                 label='Duration'
                 placeholder="Mar 2020 - May 2024"
-                className={`${ errors.duration ? "mt-5" : "" }`}
-                {...register('duration')}
+                className={`${ errors.durationTime ? "mt-5" : "" }`}
+                {...register('durationTime')}
                 />
-                {errors.duration && (
+                {errors.durationTime && (
                 <p className="text-red-600">
-                  {errors.duration.message}
+                  {errors.durationTime.message}
                 </p>  
               )}
                 <Input

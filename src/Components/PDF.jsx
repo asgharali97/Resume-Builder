@@ -4,8 +4,8 @@ import {Page, Text, View, Document, StyleSheet} from '@react-pdf/renderer'
 const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}) => {
   const styles = StyleSheet.create({
     page: { padding: 20 },
-    section: { margin: 10, padding: 10 },
-    title: { fontSize: 18, fontWeight: 'bold', marginBottom: 10 },
+    section: { margin: 3, padding: 4 },
+    title: { fontSize: 18, fontWeight: 'bold', marginBottom: 4 },
     text: { fontSize: 12, marginBottom: 5 },
   });
   return (
@@ -20,9 +20,10 @@ const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}
            <Text style={styles.text}>LinkedIn: {basicInfo.github}</Text>
           </View>
           <View style={styles.section}>
-            <Text style={styles.title}>{summary.title}</Text>
+            <Text style={styles.title}>Summary</Text>
+            <Text style={styles.text}>{summary.sumtitle}</Text>
             <Text style={styles.text}>{summary.summary}</Text>
-          </View>
+            </View>
           <View style={styles.section}>
             <Text style={styles.title}>Skills</Text>
             <Text style={styles.text}>Languages: {skills.languages}</Text>

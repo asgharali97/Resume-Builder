@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Input from "./Input";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { setSummary } from "../store/UserSlice";
 import { useForm } from "react-hook-form";
@@ -48,7 +48,7 @@ const Summary = () => {
               label="Professional Title"
               placeholder="e.g Full Stack Developer , Data Scientist"
               className={`${errors.title ? "mt-5" : ""}`}
-              {...register("title", {
+              {...register("sumtitle", {
                 required: "Title is required",
                 minLength: {
                   value: 3,
@@ -56,9 +56,9 @@ const Summary = () => {
                 },
               })}
             />
-            {errors.title && (
+            {errors.sumtitle && (
               <p className="text-red-600 absolute top-[4vh] px-1">
-                {errors.title.message}
+                {errors.sumtitle.message}
               </p>
             )}
             <Input
