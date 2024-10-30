@@ -5,9 +5,9 @@ const initialState = {
   workExp: [],
   education: [],
   skills: [],
+  summary: [],
   projects: [],
   achievements: [],
-  summary: [],
 };
 
 const UserSlice = createSlice({
@@ -34,9 +34,9 @@ const UserSlice = createSlice({
       );
     },
     setSkills: (state, action) => {
-      state.skills.push(action.payload);
+      state.skills = action.payload;
     },
-    removeSkill: (state, action) => {
+    removeSkills: (state, action) => {
       state.skills = state.skills.filter(
         (_, index) => index !== action.payload
       );
@@ -50,15 +50,16 @@ const UserSlice = createSlice({
       );
     },
     setAchievements: (state, action) => {
-      state.achievements.push(action.payload);
+      state.achievements = action.payload;
     },
+   
     removeAchievements: (state, action) => {
       state.achievements = state.achievements.filter(
         (_, index) => index !== action.payload
       );
     },
-    setSummary: (state, action) => {
-      state.summary.push(action.payload);
+    setSummary: (state,action) =>{
+      state.summary= action.payload
     },
     removeSummary: (state, action) => {
       state.summary = state.summary.filter(

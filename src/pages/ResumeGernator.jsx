@@ -7,12 +7,14 @@ const ResumeGernator = () => {
     const basicInfo = useSelector((state) => state.resume.basicInfo)
     console.log(basicInfo)
     const workExp = useSelector((state) => state.resume.workExp)
-    console.log(workExp)
     const education = useSelector((state) => state.resume.education)
+    console.log(education)
     const skills = useSelector((state) => state.resume.skills)
+    console.log(skills)
     const projects = useSelector((state) => state.resume.projects)
     const achievements = useSelector((state) => state.resume.achievements)
     const summary = useSelector((state) => state.resume.summary)
+    console.log(summary)
   return (
     <>
       <PDFDownloadLink

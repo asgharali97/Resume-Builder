@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import Input from './Input'
 import { useForm } from 'react-hook-form'
 import { useNavigate, Link } from 'react-router-dom'
@@ -6,24 +6,14 @@ import { useDispatch } from 'react-redux'
 import { setSkills } from '../store/UserSlice'
 import Button from './button'
 const Skills = () => {
-   const {handleSubmit , register, setValue,formState: { errors }} = useForm();
+   const {handleSubmit , register,control,formState: { errors }} = useForm();
    const navigate = useNavigate();
    const dispatch = useDispatch();
    
-  //  useEffect(()=>{
-  //   const savedData = localStorage.getItem('skills');
-  //   if(savedData){
-  //     const parsedData = JSON.parse(savedData)
-  //     Object.keys(parsedData).forEach((key)=> setValue(key, parsedData[key]))
-  //     dispatch(setSkills(parsedData))
-  //   }
-  //  },[dispatch,setValue])
-
    const onSubmit = (data)=>{
     if(Object.keys(errors).length === 0) {
         dispatch(setSkills(data));
         console.log(data);
-        // localStorage.setItem('skills',JSON.stringify(data));
         navigate('/experience')
     }
   

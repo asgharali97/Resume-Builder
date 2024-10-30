@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -11,23 +11,13 @@ const achivements = () => {
   const {
     handleSubmit,
     register,
-    setValue,
     formState: { errors },
   } = useForm();
 
-  // useEffect(() => {
-  //   const savedData = localStorage.getItem("achivements");
-  //   if (savedData) {
-  //     const parsedData = JSON.parse(savedData);
-  //     Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-  //     dispatch(setAchievements(parsedData));
-  //   }
-  // }, [setValue, dispatch]);
 
   const submit = (data) => {
     if (Object.keys(errors).length === 0) {
       dispatch(setAchievements(data));
-      // localStorage.setItem("achivements", JSON.stringify(data));
       navigate("/resumeGernator");
     }
   };

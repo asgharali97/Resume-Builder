@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate, Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm, useFieldArray } from "react-hook-form";
@@ -11,7 +11,6 @@ const education = () => {
   const {
     handleSubmit,
     register,
-    setValue,
     control,
     formState: { errors },
   } = useForm({
@@ -30,19 +29,10 @@ const education = () => {
     control,
     name: "education",
   });
-  // useEffect(() => {
-  //   const savedData = localStorage.getItem("education");
-  //   if (savedData) {
-  //     const parsedData = JSON.stringify(savedData);
-  //     Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-  //     dispatch(setEducation(parsedData));
-  //   }
-  // });
 
   const submit = (data) => {
     if (Object.keys(errors).length === 0) {
       dispatch(setEducation(data));
-      // localStorage.setItem("projects", JSON.stringify(data));
       console.log(data);
       navigate("/achivements");
     }
@@ -69,17 +59,17 @@ const education = () => {
                 <Input
                 label='Title'
                 placeholder="e.g:Bachelors of technology in Computer Science"
-                className={`${ errors.title ? "mt-5" : "" }`}
-                {...register(`title.${index}.eduTitle`,{
+                className={`${ errors.degree ? "mt-5" : "" }`}
+                {...register(`degree`,{
                   minLength:{
                     value:3,
                     message:'Title Must be at least 3 characters long'
                   }
                 })}
                 />
-                {errors.title?.[index]?.eduTitle && (
+                {errors.degree && (
                 <p className="text-red-600">
-                  {errors.title[index].eduTitle.message}
+                  {errors.degree.message}
                 </p>  
               )}
                 <Input
@@ -101,12 +91,12 @@ const education = () => {
                 <Input
                 label='Duration'
                 placeholder="Mar 2020 - May 2024"
-                className={`${ errors.duration ? "mt-5" : "" }`}
-                {...register('duration')}
+                className={`${ errors.durationTime ? "mt-5" : "" }`}
+                {...register('durationTime')}
                 />
-                {errors.duration && (
+                {errors.durationTime && (
                 <p className="text-red-600">
-                  {errors.duration.message}
+                  {errors.durationTime.message}
                 </p>  
               )}
                 <Input

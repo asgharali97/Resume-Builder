@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { setProjects, removeProjects } from "../store/UserSlice";
@@ -12,7 +12,6 @@ const Projects = () => {
   const {
     handleSubmit,
     register,
-    setValue,
     control,
     formState: { errors },
   } = useForm({
@@ -34,20 +33,11 @@ const Projects = () => {
     name: "projects",
   });
 
-  // useEffect(() => {
-  //   const savedData = localStorage.getItem("projects");
-  //   if (savedData) {
-  //     const parsedData = JSON.parse(savedData);
-  //     Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-  //     dispatch(setProjects(parsedData));
-  //   }
-  // }, [setValue, dispatch]);
 
   const submit = (data) => {
     if (Object.keys(errors).length === 0) {
       dispatch(setProjects(data));
       console.log(data)
-      // localStorage.setItem("projects", JSON.stringify(data));
       navigate("/education");
     }
   };

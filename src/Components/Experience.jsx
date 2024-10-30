@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setWorkExp, removeWorkExp } from "../store/UserSlice";
@@ -12,7 +12,6 @@ const Experience = () => {
   const {
     handleSubmit,
     register,
-    setValue,
     control,
     formState: { errors },
   } = useForm({
@@ -35,20 +34,10 @@ const Experience = () => {
     name: "experiences",
   });
 
-  // useEffect(() => {
-  //   const savedData = localStorage.getItem("experience");
-  //   if (savedData) {
-  //     const parsedData = JSON.parse(savedData);
-  //     Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-  //     dispatch(setWorkExp(parsedData));
-  //   }
-  // }, [dispatch, setValue]);
-
   const submit = (data) => {
     if (Object.keys(errors).length === 0) {
       dispatch(setWorkExp(data));
       console.log(data);
-      // localStorage.setItem("experience", JSON.stringify(data));
       navigate("/projects");
     }
   };

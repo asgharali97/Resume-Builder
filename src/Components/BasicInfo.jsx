@@ -1,32 +1,17 @@
-import React,{useEffect, useState} from "react";
+import React from "react";
 import Input from "./Input";
 import { useDispatch,useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {setBasicInfo} from '../store/UserSlice'
 import {useForm, useFieldArray} from 'react-hook-form';
 import Button from "./button";
-const BasicInfo = ({data}) => {
+const BasicInfo = () => {
   const dispatch = useDispatch();
-  const {register , handleSubmit, setValue, control, formState: { errors }} = useForm({
-    defaultValues:{
-      name: data?.name || '',
-      email: data?.email || '',
-      phone: data?.phone || '',
-      linkedIn: data?.linkedIn || '',
-      github: data?.github || '',
-      link: data?.link || '',
-    }
+  const {register , handleSubmit, control, formState: { errors }} = useForm({
+    
   });
   const { fields, append, remove } = useFieldArray({ control, name: "link" });
   const navigate = useNavigate();
-  // useEffect(()=>{
-  //   const savedData = localStorage.getItem('basicInfo');
-  //   if(savedData){
-  //     const parsedData = JSON.parse(savedData);
-  //     dispatch(setBasicInfo(parsedData))
-  //     Object.keys(parsedData).forEach((key) => setValue(key, parsedData[key]));
-  //   }
-  // },[dispatch,setValue])
 
    const onSubmit = (data)=>{
       if(Object.keys(errors).length === 0){
@@ -107,7 +92,7 @@ const BasicInfo = ({data}) => {
                 <Input
                   label={`Social Links ${index + 1}`}
                   placeholder="Enter Link"
-                  {...register(`link.${index}.number`)}
+                  {...register(`more.${index}.number`)}
                 />
                 {errors.link?.[index]?.number && (
                   <p className="text-red-600">{errors.link[index].number.message}</p>
