@@ -19,11 +19,9 @@ const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}
            <Text style={styles.center}>{basicInfo.name}</Text>
            <Text style={styles.text}>Email: {basicInfo.email}</Text>
            <Text style={styles.text}>Phone: {basicInfo.phone}</Text>
-           <Text style={styles.text}> LinkedIn:
-            {basicInfo.linkedIn}
-            </Text>
+           <Text style={styles.text}> LinkedIn:{basicInfo.linkedIn}</Text>
            <Text style={styles.text}>GitHub: {basicInfo.github}</Text>
-           <Text style={styles.text}>social links: {basicInfo.link}</Text>
+           <Text style={styles.text}>{`${basicInfo.link ? 'social link' : ''}`}{basicInfo.link}</Text>
           </View>
           <View style={styles.section}>
             {/* <Text style={styles.title}>Summary</Text> */}

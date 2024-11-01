@@ -63,7 +63,7 @@ const Experience = () => {
                   label="Designation"
                   placeholder="Enter Title e.g: Full Stack Developer"
                   className={`${errors.role ? "mt-5" : ""}`}
-                  {...register(`role`, {
+                  {...register(`role.${index}.roleName`, {
                     minLength: {
                       value: 3,
                       message: "Must be at least 3 characters long",
