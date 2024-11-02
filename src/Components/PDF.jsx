@@ -8,7 +8,7 @@ const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}
     title: { fontSize: 18, fontWeight: 'bold', marginBottom: 4 },
     text: { fontSize: 12, marginBottom: 5 },
     center:{display:'flex',textAlign:'center'},
-    flex:{display:'flex',fontSize:12,marginBottom:5}
+    flex:{display:'flex',fontSize:12,marginBottom:5},
   });
   
   return (
@@ -19,9 +19,13 @@ const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}
            <Text style={styles.center}>{basicInfo.name}</Text>
            <Text style={styles.text}>Email: {basicInfo.email}</Text>
            <Text style={styles.text}>Phone: {basicInfo.phone}</Text>
-           <Text style={styles.text}> LinkedIn:{basicInfo.linkedIn}</Text>
+           <Text style={styles.text}>LinkedIn:{basicInfo.linkedIn}</Text>
            <Text style={styles.text}>GitHub: {basicInfo.github}</Text>
-           <Text style={styles.text}>{`${basicInfo.link ? 'social link' : ''}`}{basicInfo.link}</Text>
+           {basicInfo.more?.map((link, index) => (
+            <Text key={index} style={styles.text}>
+              social Link: {link.number}
+            </Text>
+           ))}
           </View>
           <View style={styles.section}>
             {/* <Text style={styles.title}>Summary</Text> */}
@@ -37,10 +41,10 @@ const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}
           </View>
           <View style={styles.section}>
         <Text style={styles.title}>Experience</Text>
-        {experience.map((exp, index) => (
+        {experience?.map((exp, index) => (
           <View key={index} style={{ marginBottom: 8 }}>
-            <Text style={styles.flex}>Role: {exp.role} </Text>
-            <Text style={styles.text}> {exp.duration}</Text>
+            <Text style={styles.flex}>Role: {exp.experiences[index].roleName} </Text>
+            <Text style={styles.flex}>{exp.duration}</Text>
             <Text style={styles.text}>Company: {exp.companyName}</Text>
             <Text style={styles.text}>Location: {exp.location}</Text>
             <Text style={styles.text}>Location: {exp.responsibilities}</Text>
@@ -49,9 +53,9 @@ const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}
       </View>
           <View style={styles.section}>
         <Text style={styles.title}>Projects</Text>
-        {project.map((pro, index) => (
+        {project?.map((pro, index) => (
           <View key={index} style={{ marginBottom: 8 }}>
-            <Text style={styles.text}>Project Name:{pro.projects}</Text>
+            <Text style={styles.text}>Project Name:{pro.projects[index].projectName}</Text>
             <Text style={styles.text}>Tech Stack:{pro.tech}</Text>
             <Text style={styles.text}>Deployed Link:{pro.deployedLink}</Text>
             <Text style={styles.text}>GitHub Link:{pro.githubLink}</Text>
@@ -61,10 +65,12 @@ const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}
       </View>
           <View style={styles.section}>
         <Text style={styles.title}>Education</Text>
-        {education.map((edu, index) => (
+        {education?.map((edu, index) => (
           <View key={index} style={{ marginBottom: 8 }}>
-            <Text style={styles.flex}>{edu.degree}</Text>
+            <View style={{display:'flex',flexDirection:'row'}}>
+            <Text style={styles.text}>{edu.degree}</Text>
             <Text style={styles.text}>{edu.durationTime}</Text>
+            </View>
             <Text style={styles.text}>{edu.collegeName}</Text>
             <Text style={styles.text}>{edu.location}</Text>
           </View>

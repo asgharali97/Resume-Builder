@@ -18,7 +18,7 @@ const Experience = () => {
     defaultValues: {
       experiences: [
         {
-          role: "",
+          roleName: "",
           companyName: "",
           duration: "",
           location: "",
@@ -63,7 +63,7 @@ const Experience = () => {
                   label="Designation"
                   placeholder="Enter Title e.g: Full Stack Developer"
                   className={`${errors.role ? "mt-5" : ""}`}
-                  {...register(`role.${index}.roleName`, {
+                  {...register(`experiences.${index}.roleName`, {
                     minLength: {
                       value: 3,
                       message: "Must be at least 3 characters long",
