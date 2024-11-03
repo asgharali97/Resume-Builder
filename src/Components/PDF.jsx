@@ -1,82 +1,178 @@
-import React from 'react'
-import {Page, Text, View, Document, StyleSheet} from '@react-pdf/renderer'
+import React from "react";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Font,
+} from "@react-pdf/renderer";
+import PoppinsMedium from "../font/PoppinsMedium.ttf";
 
-const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}) => {
+const PDF = ({
+  basicInfo,
+  summary,
+  skills,
+  experience,
+  project,
+  education,
+  achievement,
+}) => {
+  Font.register({ family: "Pop", src: PoppinsMedium });
+
   const styles = StyleSheet.create({
     page: { padding: 20 },
     section: { margin: 3, padding: 4 },
-    title: { fontSize: 18, fontWeight: 'bold', marginBottom: 4 },
-    text: { fontSize: 12, marginBottom: 5 },
-    center:{display:'flex',textAlign:'center'},
-    flex:{display:'flex',fontSize:12,marginBottom:5},
+    title: {
+      fontSize: 18,
+      fontWeight: "bold",
+      marginBottom: 4,
+      fontFamily: "Pop",
+    },
+    text: {
+      fontSize: 12,
+      fontFamily: "Pop",
+      color: "#1f1f1f",
+      marginBottom: 5,
+    },
+    flex: {
+      display: "flex",
+      flexDirection: "row",
+      fontSize: 14,
+      fontFamily: "Pop",
+      fontWeight: "bold",
+      marginBottom: 5,
+    },
   });
-  
+
   return (
     <>
       <Document>
         <Page style={styles.page}>
           <View style={styles.section}>
-           <Text style={styles.center}>{basicInfo.name}</Text>
-           <Text style={styles.text}>Email: {basicInfo.email}</Text>
-           <Text style={styles.text}>Phone: {basicInfo.phone}</Text>
-           <Text style={styles.text}>LinkedIn:{basicInfo.linkedIn}</Text>
-           <Text style={styles.text}>GitHub: {basicInfo.github}</Text>
-           {basicInfo.more?.map((link, index) => (
-            <Text key={index} style={styles.text}>
-              social Link: {link.number}
+            <Text style={styles.title}>{basicInfo.name}</Text>
+            <Text style={styles.flex}>
+              Email: <Text style={styles.text}> {basicInfo.email}</Text>
             </Text>
-           ))}
+            <Text style={styles.flex}>
+              Phone:
+              <Text style={styles.text}> {basicInfo.phone}</Text>
+            </Text>
+            <Text style={styles.flex}>
+              LinkedIn:
+              <Text style={styles.text}> {basicInfo.linkedIn}</Text>
+            </Text>
+            <Text style={styles.flex}>
+              GitHub:
+              <Text style={styles.text}> {basicInfo.github}</Text>
+            </Text>
+            {basicInfo.more?.map((link, index) => (
+              <Text key={index} style={styles.flex}>
+                social Link:
+                <Text style={styles.text}> {link.number}</Text>
+              </Text>
+            ))}
           </View>
           <View style={styles.section}>
-            {/* <Text style={styles.title}>Summary</Text> */}
-            <Text style={styles.title}>{summary.sumtitle}</Text>
-            <Text style={styles.text}>{summary.summary}</Text>
-            </View>
+            <Text style={styles.flex}>
+              {summary.sumtitle}
+              <Text style={styles.text}> {summary.summary}</Text>
+            </Text>
+          </View>
           <View style={styles.section}>
             <Text style={styles.title}>Skills</Text>
-            <Text style={styles.text}>Languages: {skills.languages}</Text>
-            <Text style={styles.text}>Frameworks: {skills.frameworks}</Text>
-            <Text style={styles.text}>DevTools: {skills.devTools}</Text>
-            <Text style={styles.text}>Databases: {skills.database}</Text>
+            <Text style={styles.flex}>
+              Languages:
+              <Text style={styles.text}> {skills.languages}</Text>
+            </Text>
+            <Text style={styles.text}>
+              Frameworks:
+              <Text style={styles.text}> {skills.frameworks}</Text>
+            </Text>
+            <Text style={styles.flex}>
+              DevTools:
+              <Text style={styles.text}> {skills.devTools}</Text>
+            </Text>
+            <Text style={styles.flex}>
+              Databases:
+              <Text style={styles.text}> {skills.database}</Text>
+            </Text>
           </View>
           <View style={styles.section}>
-        <Text style={styles.title}>Experience</Text>
-        {experience?.map((exp, index) => (
-          <View key={index} style={{ marginBottom: 8 }}>
-            <Text style={styles.flex}>Role: {exp.experiences[index].roleName} </Text>
-            <Text style={styles.flex}>{exp.duration}</Text>
-            <Text style={styles.text}>Company: {exp.companyName}</Text>
-            <Text style={styles.text}>Location: {exp.location}</Text>
-            <Text style={styles.text}>Location: {exp.responsibilities}</Text>
+            <Text style={styles.title}>Experience</Text>
+            {experience?.map((exp, index) => (
+              <View key={index} style={{ marginBottom: 8 }}>
+                <Text style={styles.flex}>
+                  Role: {exp.experiences[index].roleName}{" "}
+                  <Text style={styles.text}> {exp.duration}</Text>
+                </Text>
+                <Text style={styles.flex}>
+                  Company:
+                  <Text style={styles.text}> {exp.companyName}</Text>
+                </Text>
+                <Text style={styles.flex}>
+                  Location:
+                  <Text style={styles.text}> {exp.location}</Text>
+                </Text>
+                <Text style={styles.flex}>
+                  Responsibilities:
+                  <Text style={styles.text}> {exp.responsibilities}</Text>
+                </Text>
+              </View>
+            ))}
           </View>
-        ))}
-      </View>
           <View style={styles.section}>
-        <Text style={styles.title}>Projects</Text>
-        {project?.map((pro, index) => (
-          <View key={index} style={{ marginBottom: 8 }}>
-            <Text style={styles.text}>Project Name:{pro.projects[index].projectName}</Text>
-            <Text style={styles.text}>Tech Stack:{pro.tech}</Text>
-            <Text style={styles.text}>Deployed Link:{pro.deployedLink}</Text>
-            <Text style={styles.text}>GitHub Link:{pro.githubLink}</Text>
-            <Text style={styles.text}>Description: {pro.description}</Text>
+            <Text style={styles.title}>Projects</Text>
+            {project?.map((pro, index) => (
+              <View key={index} style={{ marginBottom: 8 }}>
+                <Text style={styles.flex}>
+                  Project Name: <Text style={styles.text}> {pro.projects[index].projectName}
+                  </Text>
+                </Text>
+                <Text style={styles.flex}>
+                  Tech Stack:
+                  <Text style={styles.text}> {pro.tech}</Text>
+                </Text>
+                <Text style={styles.flex}>
+                  Deployed Link:
+                  <Text style={styles.text}> {pro.deployedLink}</Text>
+                </Text>
+                <Text style={styles.flex}>
+                  GitHub Link:
+                  <Text style={styles.text}> {pro.githubLink}</Text>
+                </Text>
+                <Text style={styles.flex}>
+                  Description:
+                  <Text style={styles.text}> {pro.description}</Text>
+                </Text>
+              </View>
+            ))}
           </View>
-        ))}
-      </View>
           <View style={styles.section}>
-        <Text style={styles.title}>Education</Text>
-        {education?.map((edu, index) => (
-          <View key={index} style={{ marginBottom: 8 }}>
-            <View style={{display:'flex',flexDirection:'row'}}>
-            <Text style={styles.text}>{edu.degree}</Text>
-            <Text style={styles.text}>{edu.durationTime}</Text>
-            </View>
-            <Text style={styles.text}>{edu.collegeName}</Text>
-            <Text style={styles.text}>{edu.location}</Text>
+            <Text style={styles.title}>Education</Text>
+            {education?.map((edu, index) => (
+              <View key={index} style={{ marginBottom: 8 }}>
+                <View>
+                  <Text style={styles.flex}>
+                    Degree: 
+                    <Text style={styles.text}>
+                     {edu.degree}
+                    </Text>
+                    <Text style={styles.text}> {edu.durationTime}</Text>
+                  </Text>
+                  <Text style={styles.flex}>
+                  University: 
+                  <Text style={styles.text}> {edu.collegeName}</Text>
+                  </Text>
+                  <Text style={styles.flex}>
+                   Location:  
+                    <Text style={styles.text}> {edu.location}</Text>
+                  </Text>
+                </View>
+              </View>
+            ))}
           </View>
-        ))}
-      </View>
-      <View style={styles.section}>
+          <View style={styles.section}>
             <Text style={styles.title}>Achievements</Text>
             <Text style={styles.text}>{achievement.achievements1}</Text>
             <Text style={styles.text}>{achievement.achievements2}</Text>
@@ -86,7 +182,7 @@ const PDF = ({basicInfo,summary,skills,experience,project,education,achievement}
         </Page>
       </Document>
     </>
-  )
-}
+  );
+};
 
-export default PDF
+export default PDF;
