@@ -48,11 +48,11 @@ const Experience = () => {
 
   return (
     <>
-      <div className="w-full py-8 px-16">
+      <div className="min-h-screen w-full py-8 px-16">
         <div className="head py-4 ">
           <h1 className="text-3xl font-semibold mb-4">Experience</h1>
         </div>
-        <div className="w-[64vw] h-[60vh]">
+        <div className="w-[64vw]">
           <form
             onSubmit={handleSubmit(submit)}
             className="flex flex-wrap gap-8 relative"

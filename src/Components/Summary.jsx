@@ -26,11 +26,11 @@ const Summary = () => {
   };
   return (
     <>
-      <div className="w-full h-screen bg-[#121212] py-8 px-16">
+      <div className="w-full min-h-screen bg-[#121212] py-8 px-16">
         <div className="head py-4 ">
           <h1 className="text-3xl font-semibold mb-4">Summary</h1>
         </div>
-        <div className="w-[70vw] h-[60vh]">
+        <div className="w-[70vw]">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-wrap gap-8 relative"

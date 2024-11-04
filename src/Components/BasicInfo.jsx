@@ -23,11 +23,11 @@ const BasicInfo = () => {
  
   return (
     <>
-      <div className="min-h-screen w-full bg-[rgb(18,18,18)] py-8 px-16">
+      <div  className="min-h-screen w-full bg-[#121212] py-8 px-16">
         <div className="head py-4 ">
           <h1 className="text-3xl font-semibold mb-4">Basic Info</h1>
         </div>
-        <div className="w-[64vw] h-[60vh]">
+        <div className="w-[64vw]">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap gap-8 relative">
             <Input
               label="Name"
