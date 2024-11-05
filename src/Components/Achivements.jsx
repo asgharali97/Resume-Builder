@@ -23,8 +23,8 @@ const achivements = () => {
   };
   return (
     <>
-      <div className="min-h-screen w-full py-8 px-16">
-        <div className="head py-4 ">
+      <div className="min-h-screen w-full py-8 px-16 text-white bg-[#121212]">
+        <div className="head py-4">
           <h1 className="text-3xl font-semibold mb-4">Achievement</h1>
         </div>
         <div className="w-[64vw]">

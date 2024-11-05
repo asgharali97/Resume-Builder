@@ -14,6 +14,8 @@ const ResumeGernator = () => {
   const summary = useSelector((state) => state.resume.summary);
   return (
     <>
+
+    <div className="min-h-screen bg-[#121212]">
       <PDFDownloadLink
         document={
           <PDF
@@ -29,6 +31,7 @@ const ResumeGernator = () => {
         fileName="resume.pdf"
         className="btn-download-pdf"
       >
+          
         {({ loading }) =>
           loading ? (
             <div className="min-h-screen">
@@ -93,16 +96,14 @@ const ResumeGernator = () => {
               </div>
             </div>
           ) : (
-            <div className="min-h-screen relative">
-              <div className="flex justify-center mt-28 relative">
-                <button className="btn">
-                  download
-                </button>
-              </div>
+            <div className="flex justify-center mt-24 tex-white">
+            <button className="py-2 px-8 rounded-3xl border-2 border-[#858585]">download</button>
             </div>
           )
         }
+        
       </PDFDownloadLink>
+        </div>
     </>
   );
 };

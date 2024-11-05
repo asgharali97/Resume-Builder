@@ -26,7 +26,7 @@ const Summary = () => {
   };
   return (
     <>
-      <div className="w-full min-h-screen bg-[#121212] py-8 px-16">
+      <div className="w-full min-h-screen text-white bg-[#121212] py-8 px-16">
         <div className="head py-4 ">
           <h1 className="text-3xl font-semibold mb-4">Summary</h1>
         </div>
