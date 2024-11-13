@@ -60,7 +60,7 @@ const education = () => {
                 label='Title'
                 placeholder="e.g:Bachelors of technology in Computer Science"
                 className={`${ errors.degree ? "mt-5" : "" }`}
-                {...register(`degree`,{
+                {...register(`education.${index}.degree`,{
                   minLength:{
                     value:3,
                     message:'Title Must be at least 3 characters long'
@@ -76,7 +76,7 @@ const education = () => {
                 label='College/School Name'
                 placeholder="Enter Name of your College or School"
                 className={`${ errors.collegeName ? "mt-5" : "" }`}
-                {...register('collegeName',{
+                {...register(`education.${index}.collegeName`,{
                   minLength:{
                     value:3,
                     message:'Name Must be at least 2 characters long'
@@ -92,7 +92,7 @@ const education = () => {
                 label='Duration'
                 placeholder="Mar 2020 - May 2024"
                 className={`${ errors.durationTime ? "mt-5" : "" }`}
-                {...register('durationTime')}
+                {...register(`education.${index}.durationTime`)}
                 />
                 {errors.durationTime && (
                 <p className="text-red-600">
@@ -103,7 +103,7 @@ const education = () => {
                 label='Location'
                 placeholder="Location e.g:"
                 className={`${ errors.location ? "mt-5" : "" }`}
-                {...register('location',{
+                {...register(`education.${index}.location`,{
                   minLength:{
                     value:3,
                     message:'Location Must be at least 2 characters long'

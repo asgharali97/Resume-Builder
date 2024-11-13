@@ -80,16 +80,16 @@ const Projects = () => {
                 label="Teach Stack"
                 placeholder="e.g: React, Node,"
                 className={`${errors.tech ? "mt-5" : ""}`}
-                {...register("tech", {
+                {...register(`projects.${index}.tech`, {
                   minLength: {
                     value: 3,
                     message: "Teach Stack Name must be at least 3 characters long",
                   },
                 })}
               />
-              {errors.tech && (
+              {errors?.projects?.[index]?.tech && (
                 <p className="text-red-600 absolute top-[4vh] px-1">
-                  {errors.tech.message}
+                  {errors.projects[index].tech.message}
                 </p>
               )}
 
@@ -97,16 +97,16 @@ const Projects = () => {
                 label="Deployed Link"
                 placeholder="Enter a your project Deployed Link"
                 className={`${errors.deployedLink ? "mt-5" : ""}`}
-                {...register("deployedLink", {
+                {...register(`projects.${index}.deployedLink`, {
                   pattern: {
                     value: /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^\s]*$/i,
                     message: "Deployed URL must be valid"
                   }
                 })}
               />
-              {errors.deployedLink && (
+              {errors?.projects?.[index]?.deployedLink && (
                 <p className="text-red-600 absolute top-[4vh] px-1">
-                  {errors.deployedLink.message}
+                  {errors.projects[index].deployedLink.message}
                 </p>
               )}
 
@@ -114,16 +114,16 @@ const Projects = () => {
                 label="GitHub Link"
                 placeholder="Enter a GitHub Link"
                 className={`${errors.githubLink ? "mt-5" : ""}`}
-                {...register("githubLink", {
+                {...register(`projects.${index}.githubLink`, {
                   pattern: {
                     value: /^(?:(?:https?|ftp):\/\/)?(?:www\.)?[a-z0-9-]+(?:\.[a-z0-9-]+)+[^\s]*$/i,
                     message: "GitHub URL must be valid"
                   }
                 })}
               />
-              {errors.githubLink && (
+              {errors?.projects?.[index]?.githubLink && (
                 <p className="text-red-600 absolute top-[4vh] px-1">
-                  {errors.githubLink.message}
+                  {errors.projects[0].githubLink.message}
                 </p>
               )}
 
@@ -131,16 +131,16 @@ const Projects = () => {
                 label="Enter a your project description"
                 placeholder="Enter one or two line description"
                 className={`${errors.description ? "mt-5" : ""}`}
-                {...register("description", {
+                {...register(`projects.${index}.description`, {
                   minLength:{
                     value:3,
                     message:'Description must be at least 3 character long'
                   }
                 })}
               />
-              {errors.description && (
+              {errors?.projects?.[index]?.description && (
                 <p className="text-red-600 absolute top-[4vh] px-1">
-                  {errors.description.message}
+                  {errors.projects[0].description.message}
                 </p>
               )}
               <div className="w-full flex justify-center items-center">

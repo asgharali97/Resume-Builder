@@ -123,13 +123,13 @@ const PDF = ({
           </View>
           <View style={styles.section}>
             <Text style={styles.title}>Projects</Text>
-            {project?.map((pro, index) => (
+            {project.map((pro, index) => (
               <View key={index} style={{ marginBottom: 8 }}>
                 <Text style={styles.flex}>
                   Project Name:{" "}
                   <Text style={styles.text}>
                     {" "}
-                    {pro.projects[index].projectName}
+                    {pro.projectName}
                   </Text>
                 </Text>
                 <Text style={styles.flex}>
@@ -153,7 +153,7 @@ const PDF = ({
           </View>
           <View style={styles.section}>
             <Text style={styles.title}>Education</Text>
-            {education?.map((edu, index) => (
+            {education.map((edu, index) => (
               <View key={index} style={{ marginBottom: 8 }}>
                 <View>
                   <Text style={styles.flex}>
