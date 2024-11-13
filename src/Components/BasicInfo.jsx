@@ -92,7 +92,7 @@ const BasicInfo = () => {
                 <Input
                   label={`Social Links ${index + 1}`}
                   placeholder="Enter Link"
-                  {...register(`more.${index}.number`)}
+                  {...register(`link.${index}.number`)}
                 />
                 {errors.link?.[index]?.number && (
                   <p className="text-red-600">{errors.link[index].number.message}</p>

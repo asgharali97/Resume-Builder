@@ -6,10 +6,21 @@ import '../App.css'
 
 const ResumeGernator = () => {
   const basicInfo = useSelector((state) => state.resume.basicInfo);
-  const workExp = useSelector((state) => state.resume.workExp);
+  // console.log(basicInfo)        
+  const workExp = useSelector((state) =>
+    state.resume.workExp && state.resume.workExp.length > 0 
+      ? state.resume.workExp[0].experiences 
+      : state.resume.workExp
+  );
+  
+  // const workExp = useSelector((state) => state.resume.workExp[0].experiences);
+  console.log(workExp)        
+  // console.log(workExp.experiences)       
+  // console.log(workExp[0].experiences)       
   const education = useSelector((state) => state.resume.education);
   const skills = useSelector((state) => state.resume.skills);
   const projects = useSelector((state) => state.resume.projects);
+  // console.log(projects)
   const achievements = useSelector((state) => state.resume.achievements);
   const summary = useSelector((state) => state.resume.summary);
   return (
@@ -101,7 +112,6 @@ const ResumeGernator = () => {
             </div>
           )
         }
-        
       </PDFDownloadLink>
         </div>
     </>

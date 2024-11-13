@@ -9,6 +9,9 @@ import Button from "./button";
 const Experience = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const filldata = {
+        
+  }
   const {
     handleSubmit,
     register,
@@ -16,17 +19,17 @@ const Experience = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      experiences: [
-        {
+     experiences:[
+          {
           roleName: "",
           companyName: "",
           duration: "",
           location: "",
           responsibilities: "",
           impact: "",
-        },
-      ],
-    },
+        }
+        ]
+      },
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -37,7 +40,7 @@ const Experience = () => {
   const submit = (data) => {
     if (Object.keys(errors).length === 0) {
       dispatch(setWorkExp(data));
-      console.log(data);
+      console.log(data.experiences);
       navigate("/projects");
     }
   };
@@ -57,12 +60,13 @@ const Experience = () => {
             onSubmit={handleSubmit(submit)}
             className="flex flex-wrap gap-8 relative"
           >
+            
             {fields.map((field, index) => (
               <div key={field.id} className="flex flex-wrap gap-8">
                 <Input
                   label="Designation"
                   placeholder="Enter Title e.g: Full Stack Developer"
-                  className={`${errors.role ? "mt-5" : ""}`}
+                  className={`${errors.roleName ? "mt-5" : ""}`}
                   {...register(`experiences.${index}.roleName`, {
                     minLength: {
                       value: 3,
@@ -70,17 +74,16 @@ const Experience = () => {
                     },
                   })}
                 />
-                {errors.role && (
+                {errors.roleName && (
                   <p className="text-red-600">
-                    {errors.role.message}
+                    {errors.roleName.message}
                   </p>
                 )}
-
                 <Input
                   label="Company Name"
                   placeholder="Enter Company Name e.g: amazon"
                   className={`${errors.companyName ? "mt-5" : ""}`}
-                  {...register("companyName", {
+                  {...register(`experiences.${index}.companyName`, {
                     minLength: {
                       value: 3,
                       message: "must be at least 3 characters long",
@@ -96,7 +99,7 @@ const Experience = () => {
                   label="Duration"
                   placeholder="2018-2021"
                   className={`${errors.duration ? "mt-5" : ""}`}
-                  {...register("duration", {
+                  {...register(`experiences.${index}.duration`, {
                     minLength: {
                       value: 3,
                       message: "must be at least 3 characters long",
@@ -112,7 +115,7 @@ const Experience = () => {
                   label="Location"
                   placeholder="Enter a Location e.g: remote"
                   className={`${errors.location ? "mt-5" : ""}`}
-                  {...register("location", {
+                  {...register(`experiences.${index}.location`, {
                     minLength: {
                       value: 3,
                       message: "must be at least 3 characters long",
@@ -128,7 +131,7 @@ const Experience = () => {
                   label="Enter a Work description"
                   placeholder="What your responsibilities were"
                   className={`${errors.responsibilities ? "mt-5" : ""}`}
-                  {...register("responsibilities", {
+                  {...register(`experiences.${index}.responsibilities`, {
                     minLength: {
                       value: 3,
                       message: "must be at least 3 characters long",
@@ -144,7 +147,7 @@ const Experience = () => {
                   label="Impact"
                   placeholder="Improvement or Impact you made in company"
                   className={`${errors.impact ? "mt-5" : ""}`}
-                  {...register("impact", {
+                  {...register(`experiences.${index}.impact`, {
                     minLength: {
                       value: 3,
                       message: "must be at least 3 characters long",
@@ -265,14 +268,16 @@ const Experience = () => {
             <Button
             className='flex justify-center items-center absolute bottom-0 left-96 mt-12 h-7 px-2 hover:rotate-9 hover:bg-[#272727]'
               onClick={() =>
-                append({
-                  role: "",
-                  companyName: "",
-                  duration: "",
-                  location: "",
-                  responsibilities: "",
-                  impact: "",
-                })
+                append(
+                  {
+                    roleName: "",
+                    companyName: "",
+                    duration: "",
+                    location: "",
+                    responsibilities: "",
+                    impact: "",
+                  },
+                )
               }
             >
               <svg

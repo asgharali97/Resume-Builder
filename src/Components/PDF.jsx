@@ -66,7 +66,7 @@ const PDF = ({
               GitHub:
               <Text style={styles.text}> {basicInfo.github}</Text>
             </Text>
-            {basicInfo.more?.map((link, index) => (
+            {basicInfo.link?.map((link, index) => (
               <Text key={index} style={styles.flex}>
                 social Link:
                 <Text style={styles.text}> {link.number}</Text>
@@ -85,7 +85,7 @@ const PDF = ({
               Languages:
               <Text style={styles.text}> {skills.languages}</Text>
             </Text>
-            <Text style={styles.text}>
+            <Text style={styles.flex}>
               Frameworks:
               <Text style={styles.text}> {skills.frameworks}</Text>
             </Text>
@@ -100,10 +100,10 @@ const PDF = ({
           </View>
           <View style={styles.section}>
             <Text style={styles.title}>Experience</Text>
-            {experience?.map((exp, index) => (
+            {experience.map((exp, index) => (
               <View key={index} style={{ marginBottom: 8 }}>
-                <Text style={styles.flex}>
-                  Role: {exp.experiences[index].roleName}{" "}
+                <Text style={styles.flex}>                  
+                  Role: {exp.roleName}
                   <Text style={styles.text}> {exp.duration}</Text>
                 </Text>
                 <Text style={styles.flex}>
@@ -126,7 +126,10 @@ const PDF = ({
             {project?.map((pro, index) => (
               <View key={index} style={{ marginBottom: 8 }}>
                 <Text style={styles.flex}>
-                  Project Name: <Text style={styles.text}> {pro.projects[index].projectName}
+                  Project Name:{" "}
+                  <Text style={styles.text}>
+                    {" "}
+                    {pro.projects[index].projectName}
                   </Text>
                 </Text>
                 <Text style={styles.flex}>
@@ -154,18 +157,16 @@ const PDF = ({
               <View key={index} style={{ marginBottom: 8 }}>
                 <View>
                   <Text style={styles.flex}>
-                    Degree: 
-                    <Text style={styles.text}>
-                     {edu.degree}
-                    </Text>
+                    Degree:
+                    <Text style={styles.text}>{edu.degree}</Text>
                     <Text style={styles.text}> {edu.durationTime}</Text>
                   </Text>
                   <Text style={styles.flex}>
-                  University: 
-                  <Text style={styles.text}> {edu.collegeName}</Text>
+                    University:
+                    <Text style={styles.text}> {edu.collegeName}</Text>
                   </Text>
                   <Text style={styles.flex}>
-                   Location:  
+                    Location:
                     <Text style={styles.text}> {edu.location}</Text>
                   </Text>
                 </View>
