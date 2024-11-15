@@ -59,7 +59,7 @@ const education = () => {
                 <Input
                 label='Title'
                 placeholder="e.g:Bachelors of technology in Computer Science"
-                className={`${ errors.degree ? "mt-5" : "" }`}
+                className={`${errors.degree ? "mt-5" : "" }`}
                 {...register(`education.${index}.degree`,{
                   minLength:{
                     value:3,
@@ -67,9 +67,9 @@ const education = () => {
                   }
                 })}
                 />
-                {errors.degree && (
-                <p className="text-red-600">
-                  {errors.degree.message}
+                {errors?.education?.[index]?.degree && (
+                <p className="text-red-600 absolute top-[-4vh] px-1">
+                  {errors.education[index].degree.message}
                 </p>  
               )}
                 <Input
@@ -83,20 +83,25 @@ const education = () => {
                   }
                 })}
                 />
-                {errors.collegeName && (
-                <p className="text-red-600">
-                  {errors.collegeName.message}
+                {errors?.education?.[index]?.collegeName && (
+                <p className="text-red-600 absolute top-[-4vh] left-[32.5vw] px-1">
+                  {errors.education[index].collegeName.message}
                 </p>  
               )}
                 <Input
                 label='Duration'
                 placeholder="Mar 2020 - May 2024"
                 className={`${ errors.durationTime ? "mt-5" : "" }`}
-                {...register(`education.${index}.durationTime`)}
+                {...register(`education.${index}.durationTime`,{
+                  minLength: {
+                    value: 3,
+                    message: "must be at least 3 characters long",
+                  },
+                })}
                 />
-                {errors.durationTime && (
-                <p className="text-red-600">
-                  {errors.durationTime.message}
+                {errors?.education?.[index]?.durationTime && (
+                <p className="text-red-600 absolute top-[14vh] px-1">
+                  {errors.education[index].durationTime.message}
                 </p>  
               )}
                 <Input
@@ -111,9 +116,9 @@ const education = () => {
                 })}
                 />
 
-                {errors.location && (
-                <p className="text-red-600">
-                  {errors.location.message}
+                {errors?.education?.[index]?.location && (
+                <p className="text-red-600 absolute top-[14vh] left-[32.5vw] px-1">
+                  {errors.education[index].location.message}
                 </p>  
               )}
               <div className="w-full flex justify-center items-center">

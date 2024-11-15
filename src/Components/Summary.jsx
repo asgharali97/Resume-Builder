@@ -38,7 +38,7 @@ const Summary = () => {
             <Input
               label="Professional Title"
               placeholder="e.g Full Stack Developer , Data Scientist"
-              className={`${errors.title ? "mt-5" : ""}`}
+              className={`${errors.sumtitle ? "mt-5" : ""}`}
               {...register("sumtitle", {
                 required: "Title is required",
                 minLength: {

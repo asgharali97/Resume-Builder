@@ -57,7 +57,7 @@ const Skills = () => {
         })}
         />
         {errors.frameworks && (
-              <p className="text-red-600 absolute top-[4vh] px-1">
+              <p className="text-red-600 absolute top-[4vh] left-[32.5vw] px-1">
                 {errors.frameworks.message}
               </p>
         )}
@@ -73,7 +73,7 @@ const Skills = () => {
         })}
         />
         {errors.devTools && (
-              <p className="text-red-600 absolute top-[4vh] px-1">
+              <p className="text-red-600 absolute top-[23vh] px-1">
                 {errors.devTools.message}
               </p>
         )}
@@ -81,10 +81,15 @@ const Skills = () => {
         label='Database'
         placeholder="e.g: MongoDb, SQL"
         className={`${errors.database ? "mt-5" : ""}`}
-        {...register('database')}
+        {...register('database',{
+          minLength: {
+            value: 3,
+            message: "must be at least 3 characters long",
+          },
+        })}
         />
         {errors.database && (
-              <p className="text-red-600 absolute top-[4vh] px-1">
+              <p className="text-red-600 absolute top-[23vh] left-[32.5vw] px-1">
                 {errors.database.message}
               </p>
         )}

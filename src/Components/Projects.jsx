@@ -71,7 +71,7 @@ const Projects = () => {
                 })}
               />
               {errors?.projects?.[index]?.projectName && (
-                <p className="text-red-600">
+                <p className="text-red-600 absolute top-[-4vh] px-1">
                   {errors.projects[index].projectName.message}
                 </p>
               )}
@@ -88,7 +88,7 @@ const Projects = () => {
                 })}
               />
               {errors?.projects?.[index]?.tech && (
-                <p className="text-red-600 absolute top-[4vh] px-1">
+                <p className="text-red-600 absolute top-[-4vh] left-[32.5vw] px-1">
                   {errors.projects[index].tech.message}
                 </p>
               )}
@@ -105,7 +105,7 @@ const Projects = () => {
                 })}
               />
               {errors?.projects?.[index]?.deployedLink && (
-                <p className="text-red-600 absolute top-[4vh] px-1">
+                <p className="text-red-600 absolute top-[14vh] px-1">
                   {errors.projects[index].deployedLink.message}
                 </p>
               )}
@@ -122,7 +122,7 @@ const Projects = () => {
                 })}
               />
               {errors?.projects?.[index]?.githubLink && (
-                <p className="text-red-600 absolute top-[4vh] px-1">
+                <p className="text-red-600 absolute top-[14vh] left-[32.5vw] px-1">
                   {errors.projects[0].githubLink.message}
                 </p>
               )}
@@ -139,7 +139,7 @@ const Projects = () => {
                 })}
               />
               {errors?.projects?.[index]?.description && (
-                <p className="text-red-600 absolute top-[4vh] px-1">
+                <p className="text-red-600 absolute top-[32vh] px-1">
                   {errors.projects[0].description.message}
                 </p>
               )}

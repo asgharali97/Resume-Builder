@@ -74,9 +74,9 @@ const Experience = () => {
                     },
                   })}
                 />
-                {errors.roleName && (
-                  <p className="text-red-600">
-                    {errors.roleName.message}
+                {errors?.experiences?.[index]?.roleName && (
+                  <p className="text-red-600 absolute top-[-4vh] px-1">
+                    {errors.experiences[index].roleName.message}
                   </p>
                 )}
                 <Input
@@ -90,9 +90,9 @@ const Experience = () => {
                     },
                   })}
                 />
-                {errors.companyName && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.companyName.message}
+                {errors?.experiences?.[index]?.companyName && (
+                  <p className="text-red-600 absolute top-[-4vh] left-[32.5vw] px-1">
+                    {errors.experiences[index].companyName.message}
                   </p>
                 )}
                 <Input
@@ -106,9 +106,9 @@ const Experience = () => {
                     },
                   })}
                 />
-                {errors.duration && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.duration.message}
+                {errors?.experiences?.[index]?.duration && (
+                  <p className="text-red-600 absolute top-[14vh] px-1">
+                    {errors.experiences[index].duration.message}
                   </p>
                 )}
                 <Input
@@ -122,9 +122,9 @@ const Experience = () => {
                     },
                   })}
                 />
-                {errors.location && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.location.message}
+                {errors?.experiences?.[index]?.location && (
+                  <p className="text-red-600 absolute top-[14vh] left-[32.5vw] px-1">
+                    {errors.experiences[index].location.message}
                   </p>
                 )}
                 <Input
@@ -138,9 +138,9 @@ const Experience = () => {
                     },
                   })}
                 />
-                {errors.responsibilities && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.responsibilities.message}
+                {errors?.experiences?.[index]?.responsibilities && (
+                  <p className="text-red-600 absolute top-[32vh] px-1">
+                    {errors.experiences[index].responsibilities.message}
                   </p>
                 )}
                 <Input
@@ -154,9 +154,9 @@ const Experience = () => {
                     },
                   })}
                 />
-                {errors.impact && (
-                  <p className="text-red-600 absolute top-[4vh] px-1">
-                    {errors.impact.message}
+                {errors?.experiences?.[index]?.impact && (
+                  <p className="text-red-600 absolute top-[32vh] left-[32.5vw] px-1">
+                    {errors.experiences[index].impact.message}
                   </p>
                 )}
                 <div className="w-full flex justify-center items-center">
