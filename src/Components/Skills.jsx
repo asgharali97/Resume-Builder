@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setSkills } from '../store/UserSlice'
-import Button from './button'
+import Button from './Button'
 const Skills = () => {
    const {handleSubmit , register,control,formState: { errors }} = useForm();
    const navigate = useNavigate();

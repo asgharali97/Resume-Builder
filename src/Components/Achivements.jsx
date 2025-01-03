@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { setAchievements } from "../store/UserSlice";
 import Input from "./Input";
-import Button from "./button";
+import Button from "./Button";
 const achivements = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

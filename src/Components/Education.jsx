@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useForm, useFieldArray } from "react-hook-form";
 import { setEducation, removeEducation } from "../store/UserSlice";
 import Input from "./Input";
-import Button from "./button";
+import Button from "./Button";
 const education = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

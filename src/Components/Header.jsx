@@ -45,7 +45,7 @@ const Header = () => {
   ];
   return (
     <>
-      <div className="flex items-center justify-around bg-[#1f1f1f] text-yellow-50 pl-8 pr-2 py-4 ">
+      <div className="flex items-center justify-between bg-[#1f1f1f] text-yellow-50 pl-8 pr-2 py-4 ">
         <div className="logo text-3xl font-bold">Resume</div>
         <div className="nav flex items-center w-[84%] cursor-pointer">
           {navItem.map((item) => {

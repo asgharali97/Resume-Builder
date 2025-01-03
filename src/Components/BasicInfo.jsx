@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom';
 import {setBasicInfo} from '../store/UserSlice'
 import {useForm, useFieldArray} from 'react-hook-form';
-import Button from "./button";
+import Button from "./Button";
 const BasicInfo = () => {
   const dispatch = useDispatch();
   const {register , handleSubmit, control, formState: { errors }} = useForm({
@@ -23,7 +23,7 @@ const BasicInfo = () => {
  
   return (
     <>
-      <div  className="min-h-screen w-full bg-[#121212] text-white py-8 px-16">
+      <div className="min-h-screen w-full bg-[#121212] text-white py-8 px-16">
         <div className="head py-4 ">
           <h1 className="text-3xl font-semibold mb-4">Basic Info</h1>
         </div>

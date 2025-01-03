@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { setProjects, removeProjects } from "../store/UserSlice";
 import { useForm, useFieldArray } from "react-hook-form";
 import Input from "./Input";
-import Button from "./button";
+import Button from "./Button";
 
 const Projects = () => {
   const dispatch = useDispatch();

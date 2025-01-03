@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { setSummary } from "../store/UserSlice";
 import { useForm } from "react-hook-form";
-import Button from "./button";
+import Button from "./Button";
 
 const Summary = () => {
   const dispatch = useDispatch();
